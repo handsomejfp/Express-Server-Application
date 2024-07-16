@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script src="/js/scripts.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
+        <ul class="items">
+            <% users.forEach(user => { %>
+                <li id="users-<%= user.id %>">
+                    <span class="content"><%= user.name %> - <%= user.email %></span>
+                    <button onclick="deleteItem('users', <%= user.id %>)">Delete</button>
+                    <button onclick="updateItem('users', <%= user.id %>)">Update</button>
+                </li>
+            <% }); %>
+        </ul>
+        <form action="/users" method="post">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <button type="submit">Add User</button>
+        </form>
+    </div>
+</body>
+</html>

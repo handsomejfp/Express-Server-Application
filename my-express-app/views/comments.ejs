@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script src="/js/scripts.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
+        <ul class="items">
+            <% comments.forEach(comment => { %>
+                <li id="comments-<%= comment.id %>">
+                    <span class="content"><%= comment.text %> - <%= comment.author %></span>
+                    <button onclick="deleteItem('comments', <%= comment.id %>)">Delete</button>
+                    <button onclick="updateItem('comments', <%= comment.id %>)">Update</button>
+                </li>
+            <% }); %>
+        </ul>
+        <form action="/comments" method="post">
+            <input type="text" name="text" placeholder="Comment" required>
+            <input type="text" name="author" placeholder="Author" required>
+            <button type="submit">Add Comment</button>
+        </form>
+    </div>
+</body>
+</html>
